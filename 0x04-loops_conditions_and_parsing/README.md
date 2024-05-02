@@ -1,5 +1,4 @@
 0x04. Loops, conditions and parsing
-
 Requirements
 General
 Allowed editors: vi, vim, emacs
