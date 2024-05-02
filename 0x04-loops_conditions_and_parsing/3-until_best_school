@@ -2,8 +2,8 @@
 # This script displays "Best School" 10 times using a while loop
 
 num = 0
-
-while [ $num -eq 10 ]
+iiii
+while [ $num -lt 10 ]
 do
     echo "Best School"
     ((num++))
