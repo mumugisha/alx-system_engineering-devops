@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-#This script prints "Best School" 10 times, and on the 9th iteration, it also prints "Hi" on a new line.
+# This script prints "Best School" 10 times, and on the 9th iteration, it also prints "Hi" on a new line.
 
 num_count=0
 
-while [ $num_count -lt 10 ]
+while [ "$num_count" -lt 10 ];
 do
-	if [ $num_count -eq 9 ]
-	then
-		echo "Hi"
-	fi
-	echo "Best School"
-	((num_count++))
+    if [ "$num_count" -eq 9 ];
+    then
+        echo "Hi"
+    fi
+    echo "Best School"
+    ((num_count++))
 done
