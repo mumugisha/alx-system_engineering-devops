@@ -5,7 +5,7 @@
 # Displays "9" and then "bad luck from Japan" for the 9th loop iteration
 # Displays "17" and then "bad luck from Italy" for the 17th loop iteration
 
-num_count=0
+num_count=1
 while ((num_count <= 20))
 do
     echo $num_count
