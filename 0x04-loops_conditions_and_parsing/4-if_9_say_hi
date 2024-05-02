@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# This script displays "Best School" 10 times.
-# On the 9th iteration, it also displays "Hi" on a new line.
+#This script prints "Best School" 10 times, and on the 9th iteration, it also prints "Hi" on a new line.
 
 num_count=0
 
@@ -12,5 +11,5 @@ do
 		echo "Hi"
 	fi
 	echo "Best School"
-	(( num_count++ ))
+	((num_count++))
 done
