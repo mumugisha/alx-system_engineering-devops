@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script that displays numbers from 1 to 100 in a list format
+
+for current_count in {1..100}
+do
+  if (( current_count % 3 == 0 && current_count % 5 == 0 ))
+  then
+    echo "FizzBuzz"
+  elif (( current_count % 3 == 0 ))
+  then
+    echo "Fizz"
+  elif (( current_count % 5 == 0 ))
+  then
+    echo "Buzz"
+  else
+    echo "$current_count"
+  fi
+done
