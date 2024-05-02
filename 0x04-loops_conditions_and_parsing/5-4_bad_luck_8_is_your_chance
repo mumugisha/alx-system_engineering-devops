@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script loops from 1 to 10 using while and if statements.
+
+num_count=1
+
+while [ $num_count -le 10 ]
+do
+    if [ $num_count -eq 4 ]
+    then
+        echo "bad luck"
+    elif [ $num_count -eq 8 ]
+    then
+        echo "good luck"
+    else
+        echo "Best School"
+    fi
+    ((num_count++))
+done
