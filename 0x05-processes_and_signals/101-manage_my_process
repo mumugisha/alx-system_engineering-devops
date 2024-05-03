@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# The init scripts that:
-#Indefinitely writes I am alive! to the file /tmp/my_process
-#In between every I am alive! message, the program should pause for 2 seconds.
+# The init scripts that manage manage_my_process
 
 if [ "$1" == "start" ]; then
     ./manage_my_process &
@@ -31,4 +29,3 @@ elif [ "$1" == "restart" ]; then
 else
     echo "Usage: manage_my_process {start|stop|restart}"
 fi
-
