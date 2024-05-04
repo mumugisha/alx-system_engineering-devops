@@ -21,17 +21,13 @@ echo $$ > "$pid_file_write_up"
 
 sigterm_signal() {
     echo "I hate the kill command."
-    cleanup
 }
 
 sigint_signal() {
     echo "Y U no love me?!"
 }
 
-trap 'sigterm_signal' SIGTERM
-trap 'sigint_signal' SIGINT
-
 while true; do 
-    echo "To infinity and beyond"
+    echo 'To infinity and beyond'
     sleep 2
 done
