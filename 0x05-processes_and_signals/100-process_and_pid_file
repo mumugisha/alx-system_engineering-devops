@@ -1,33 +1,14 @@
 #!/usr/bin/env bash
 # This script creates a PID file /var/run/myscript.pid containing its PID
-# and displays "To infinity and beyond" indefinitely.
-# It handles SIGTERM, SIGINT, and SIGQUIT signals.
 
-pid_file_write_up="/var/run/myscript.pid"
+echo $$ >> /var/run/myscript.pid
 
-cleanup() {
-    rm -f "$pid_file_write_up"
-    exit $?
-}
+trap "echo 'I hate the kill command'; rm -rf /var/run/myscript.pid; exit" SIGTERM
+trap "echo 'Y U no love me?!'" SIGINT
+trap "rm -rf /var/run/holbertonscript.pid; exit" SIGQUIT
 
-trap 'cleanup' SIGTERM SIGINT SIGQUIT
-
-if [ -e "$pid_file_write_up" ]; then
-    echo "I hate the kill command."
-    exit 1
-fi
-
-echo $$ > "$pid_file_write_up"
-
-sigterm_signal() {
-    echo "I hate the kill command."
-}
-
-sigint_signal() {
-    echo "Y U no love me?!"
-}
-
-while true; do 
-    echo 'To infinity and beyond'
+while true
+do 
+    echo 'To infinity and beyond' 
     sleep 2
 done
