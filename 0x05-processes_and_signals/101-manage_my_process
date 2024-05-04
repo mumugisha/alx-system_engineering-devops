@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # The init scripts that manage manage_my_process
 
+#!/usr/bin/env bash
+#This is a script that manages 'manage_my_process'
+
 if [ "$1" == "start" ]; then
     ./manage_my_process &
     echo $! > /var/run/my_process.pid
