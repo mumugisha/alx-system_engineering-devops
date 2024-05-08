@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#displayed may be different depending on which machine you are running the script on
+
+ifconfig -a | grep "inet addr" | cut -d ":" -f12 | cut -d ":" -f2
