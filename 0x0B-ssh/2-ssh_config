@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Configure SSH client for web-01
+echo "Setting up SSH client configuration..."
+
+cat <<EOF > ~/.ssh/config
+# SSH client configuration for web-01
+Host web-01
+    HostName 100.24.72.121
+    User ubuntu
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
+EOF
+
+echo "SSH client configuration complete."
+
