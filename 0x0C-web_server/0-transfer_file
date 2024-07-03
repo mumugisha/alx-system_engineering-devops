@@ -12,4 +12,8 @@ SERVER_IP=$2
 USERNAME=$3
 SSH_KEY_PATH=$4
 
+# Transfer the file
 scp -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$FILE_PATH" "$USERNAME@$SERVER_IP:~"
+
+# Remotely execute the ls command to verify the transfer
+ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$USERNAME@$SERVER_IP" "ls ~/" | grep "some_page.html"
