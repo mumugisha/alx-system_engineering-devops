@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Update package list and install Nginx
+apt-get update -y
+apt-get install nginx -y
+
+# Allow HTTP traffic through the firewall
+ufw allow 'Nginx HTTP'
+
+# Set up a custom HTML page
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+
+# Start Nginx service
+systemctl start nginx
+
