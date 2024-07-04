@@ -3,4 +3,4 @@
 #Bash script that uses ssh to connect to your 
 #server using the private key
 
-ssh -i ~/.ssh/school ubuntu@100.24.72.121
+ssh -i ~/.ssh/school ubuntu@35.175.102.25

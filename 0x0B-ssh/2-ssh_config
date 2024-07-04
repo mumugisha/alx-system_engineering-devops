@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 
-# Configure SSH client for web-01
+# Configure SSH client for web server
+
+k="/root/.ssh/school"
+u="ubuntu"
+i="35.175.102.25"
+
+ssh -i "$k" "$u@$i"
 
