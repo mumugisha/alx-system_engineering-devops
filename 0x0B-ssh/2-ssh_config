@@ -2,9 +2,9 @@
 
 # Configure SSH client for web server
 
-k="/root/.ssh/school"
-u="ubuntu"
-i="35.175.102.25"
-
-ssh -i "$k" "$u@$i"
-
+# This configuration applies to the specific host with IP address 35.175.102.25
+Host Host 425164-web-01
+    Hostname 34.224.5.222
+    User ubuntu
+    IdentityFile ~/.ssh/school.pem
+    PasswordAuthentication no
