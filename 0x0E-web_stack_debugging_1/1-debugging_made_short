@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# Script to update nginx configuration and restart the service
-# Change port from 8080 to 80 in the nginx default site configuration
+
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-# Restart the nginx service to apply the changes
-sudo service nginx restart
-# Clear the nginx PID file if that is necessary
-echo "" | sudo tee /run/nginx.pid > /dev/null
+sudo service nginx stop
+sudo rm /run/nginx.pid
+sudo service nginx start
