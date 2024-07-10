@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
-# configures a server to listening on port 80 of all servers active IPv4 IPs
+# This script changes the Nginx port from 8080 to 80 and restarts the Nginx service
 
+# Use sed to replace port 8080 with port 80 in the Nginx configuration file
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo service nginx restart
-echo "" | sudo dd status=none of=/run/nginx.pid
+
+# Check if sed command was successful
+if [ $? -eq 0 ]; then
+    # Restart the Nginx service
+    sudo service nginx restart
+    
+    # Check if the Nginx restart was successful
+    if [ $? -eq 0 ]; then
+        echo "Nginx restarted successfully."
+    else
+        echo "Failed to restart Nginx." >&2
+    fi
+else
+    echo "Failed to update Nginx configuration." >&2
+fi
