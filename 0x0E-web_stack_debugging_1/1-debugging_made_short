@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Make your fix short and sweet
+# Fix short and sweet
 
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo service nginx restart
-echo > /run/nginx.pid
+sudo nginx -s reload
+sudo systemctl status nginx | grep "active (running)" || echo "nginx is not running"
