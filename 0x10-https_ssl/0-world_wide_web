@@ -15,8 +15,8 @@ print_info()
 
 if [ -z "$2" ]; then
    for sub in "www" "lb-01" "web-01" "web-02"; do
-      print_info "$1" "$sub"
+      print_domain_info "$1" "$sub"
    done
 else
-   print_info "$1" "$2"
+   print_domain_info "$1" "$2"
 fi
