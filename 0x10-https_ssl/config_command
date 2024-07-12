@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# For UFW
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# For iptables
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
