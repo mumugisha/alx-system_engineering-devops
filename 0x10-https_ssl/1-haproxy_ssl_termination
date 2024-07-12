@@ -41,7 +41,7 @@ backend web_backend
 
 frontend http
     bind *:80
-    bind *:443 ssl crt /etc/letsencrypt/live/abdallah.tech/haproxy.pem
+    bind *:443 ssl crt /etc/letsencrypt/live/sparkingfinance.tech/haproxy.pem
     mode http
     default_backend web_backend
     redirect scheme https code 301 if !{ ssl_fc }
