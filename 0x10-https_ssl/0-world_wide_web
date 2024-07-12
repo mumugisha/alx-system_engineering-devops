@@ -4,19 +4,22 @@
 # add other subdomains to make our life easier, and write a Bash 
 # script that will display information about subdomains
 
-print_info()
-{
-   local domain=$1
-   local subdomain=$2
+print_info() {
+   local domain="$1"
+   local subdomain="$2"
    local write_down
    write_down=$(dig +noall +answer "${subdomain}.${domain}" | awk 'NR==1{print $5}')
-   echo "The domain ${subdomain} is an A record and points to ${write_down}"
+   if [ -n "$write_down" ]; then
+       echo "The domain ${subdomain}.${domain} is an A record and points to ${write_down}"
+   else
+       echo "No A record found for ${subdomain}.${domain}"
+   fi
 }
 
 if [ -z "$2" ]; then
    for sub in "www" "lb-01" "web-01" "web-02"; do
-      print_domain_info "$1" "$sub"
+      print_info "$1" "$sub"
    done
 else
-   print_domain_info "$1" "$2"
+   print_info "$1" "$2"
 fi
