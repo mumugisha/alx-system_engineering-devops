@@ -1,25 +1,26 @@
 #!/usr/bin/env bash
-# Configure your domain zone so that the subdomain www 
-# points to your load-balancer IP (lb-01). Let’s also 
-# add other subdomains to make our life easier, and write a Bash 
+# Configure your domain zone so that the subdomain www
+# points to your load-balancer IP (lb-01). Let’s also
+# add other subdomains to make our life easier, and write a Bash
 # script that will display information about subdomains
 
 print_info() {
-   local domain="$1"
-   local subdomain="$2"
-   local write_down
-   write_down=$(dig +noall +answer "${subdomain}.${domain}" | awk 'NR==1{print $5}')
-   if [ -n "$write_down" ]; then
-       echo "The domain ${subdomain}.${domain} is an A record and points to ${write_down}"
-   else
-       echo "No A record found for ${subdomain}.${domain}"
-   fi
-}
+	   local domain="$1"
+	      local subdomain="$2"
+	         local write_down
+		    write_down=$(dig +noall +answer "${subdomain}.${domain}" | awk 'NR==1{print $5}')
+		       if [ -n "$write_down" ]; then
+			              echo "The domain ${subdomain}.${domain} is an A record and points to ${write_down}"
+				         else
+						        echo "No A record found for ${subdomain}.${domain}"
+							   fi
+						   }
 
-if [ -z "$2" ]; then
-   for sub in "www" "lb-01" "web-01" "web-02"; do
-      print_info "$1" "$sub"
-   done
-else
-   print_info "$1" "$2"
-fi
+					   if [ -z "$2" ]; then
+						      for sub in "www" "lb-01" "web-01" "web-02"; do
+							            print_info "$1" "$sub"
+								       done
+							       else
+								          print_info "$1" "$2"
+					   fi
+
