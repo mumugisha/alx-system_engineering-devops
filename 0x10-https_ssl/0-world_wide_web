@@ -4,7 +4,8 @@
 # add other subdomains to make our life easier, and write a Bash
 # script that will display information about subdomains
 
-print_info() {
+print_info()
+{
     local domain="$1"
     local subdomain="$2"
     local write_down
