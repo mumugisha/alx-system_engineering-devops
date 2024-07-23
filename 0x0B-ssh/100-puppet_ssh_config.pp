@@ -5,7 +5,7 @@ file { '/etc/ssh/ssh_config':
 }
 
 # Ensure 'passwordAuthentication no' is present in /etc/ssh/ssh_config
-file_line { 'ensure_password_authentication_no':
+file_line { 'turn off password authentication':
   ensure  => 'present',
   path    => '/etc/ssh/ssh_config',
   line    => 'passwordAuthentication no',
