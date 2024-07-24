@@ -1,19 +1,11 @@
 #!/usr/bin/env bash
 # Run Nginx as nginx user
-# Check if the script is being run as root
-if [ "$(id -u)" -ne 0 ]; then
-	  echo "This script must be run as root"
-	    exec sudo "$0" "$@"
-fi
 
-sudo sed -i "s/#user www-data;/user nginx;/" /etc/nginx/nginx.conf
-sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
-sudo sed -i 's/listen \[::\]:80;/listen \[::\]:8080;/' /etc/nginx/sites-available/default
-sudo chmod 644 /etc/nginx/nginx.conf
 
-if pgrep apache2 > /dev/null; then
-	    sudo pkill apache2
-fi
+sed -i "s/user www-data/user nginx/" /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+chmod 644 /etc/nginx/nginx.conf
 
-sudo service nginx restart
+pkill apache2
+sudo -u nginx service nginx start
 
