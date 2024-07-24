@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
-# Run Nginx as Nginx and fix bugs
+# Run Nginx as nginx user
 
-sudo sed -i 's/#user www-data;/user nginx;/' /etc/nginx/nginx.config
+sudo sed -i "s/#user www-data;/user nginx;/" /etc/nginx/nginx.conf
 sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
 sudo sed -i 's/listen \[::\]:80;/listen \[::\]:8080;/' /etc/nginx/sites-available/default
-sudo chmod 644 /etc/nginx/nginx.config
+sudo chmod 644 /etc/nginx/nginx.conf
 
 if pgrep apache2 > /dev/null; then
 	    sudo pkill apache2
 fi
 
 sudo service nginx restart
-
