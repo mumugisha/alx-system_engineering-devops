@@ -1,20 +1,14 @@
 #!/usr/bin/env bash
 # Run Nginx as Nginx and fix bugs
 
-# Fix file permissions
+sudo sed -i "s/#user www-data;/user nginx;/" /etc/nginx/nginx.conf
+sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+sudo sed -i 's/listen \[::\]:80;/listen \[::\]:8080;/' /etc/nginx/sites-available/default
 sudo chmod 644 /etc/nginx/nginx.conf
 
-# Change Nginx user to nginx
-sudo sed -i 's/user www-data;/user nginx;/' /etc/nginx/nginx.conf
-
-# Change Nginx default port from 80 to 8080
-sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/' /etc/nginx/sites-available/default
-sudo sed -i 's/listen \[::\]:80 default_server;/listen \[::\]:8080 default_server;/' /etc/nginx/sites-available/default
-
-# Stop Apache if running
 if pgrep apache2 > /dev/null; then
 	    sudo pkill apache2
 fi
 
-# Restart Nginx
 sudo service nginx restart
+
