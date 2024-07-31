@@ -1,20 +1,32 @@
 #!/usr/bin/python3
-"""
-Python script that, using this REST API, for a given employee ID,
-returns information about his/her TODO list progress.
-"""
+'''script returns information for a given employee ID
+about his/her TODO list progress
 
-import requests
-from sys import argv
+Attrs:
+    URL: endpoint to retrive the iformation from
+'''
+from requests.exceptions import HTTPError
+from requests import get
+import sys
+
+URL = 'https://jsonplaceholder.typicode.com'
 
 if __name__ == '__main__':
-    url = "https://jsonplaceholder.typicode.com/"
-    user_id = requests.get(url + "users/{}".format(argv[1])).json()
-    todos = requests.get(url + "todos", params={"userId": argv[1]}).json()
-    tasks = [task.get('title') for task in todos if task.get('completed') is True]
+    EMPLOYEE_ID = sys.argv[1]
+    try:
+        completed = 0
+        user = get(f'{URL}/users/{EMPLOYEE_ID}').json()
+        todos = get(f'{URL}/todos?userId={EMPLOYEE_ID}').json()
+        for t in todos:
+            if t.get('completed'):
+                completed += 1
+        print('Employee {} is done with tasks({}/{}):'
+              .format(user.get('name'), completed, len(todos)))
+        for t in todos:
+            if t.get('completed'):
+                print('\t '+t.get('title'))
 
-    print("Employee {} is done with tasks({}/{}):".
-          format(user_id.get('name'), len(tasks), len(todos)))
-
-    for task in tasks:
-        print("\t {}".format(task))
+    except HTTPError as http_err:
+        print(http_err)
+    except Exception as e:
+        print(e)
