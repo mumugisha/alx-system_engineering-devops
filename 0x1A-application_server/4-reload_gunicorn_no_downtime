@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
+# reload Gunicorn
 
-MASTER_PID=$(pgrep -o -x gunicorn)
-
-if [ -z "$MASTER_PID" ]; then
-	  exit 1
-fi
-
-kill -HUP "$MASTER_PID"
-
-echo "Gunicorn master process ($MASTER_PID) reloaded gracefully."
-
+ps aux | grep gunicorn | awk '{ print $2}' xargs kill -HUP#!/usr/bin/env bash
