@@ -11,8 +11,6 @@ Group=www-data
 Restart=on-failure
 SyslogIdentifier=gunicorn
 PIDFile=/run/gunicorn.pid
-StandardOutput=append:/tmp/airbnb-access.log
-StandardError=append:/tmp/airbnb-error.log
 
 [Install]
 WantedBy=multi-user.target
