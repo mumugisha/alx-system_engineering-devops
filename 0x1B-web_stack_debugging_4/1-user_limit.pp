@@ -1,27 +1,7 @@
-# This Puppet manifest enforces a very low file descriptor limit for the holberton user,
-# ensuring the "Too many open files" error occurs on login
+# This manifest adjusts the OS configuration to allow the holberton user to log in and open files without issues
 
-file_line { 'decrease-hard-file-limit-for-holberton':
-  path  => '/etc/security/limits.conf',
-  line  => 'holberton hard nofile 10',
-  match => '^holberton.*hard.*nofile',
-}
-
-file_line { 'decrease-soft-file-limit-for-holberton':
-  path  => '/etc/security/limits.conf',
-  line  => 'holberton soft nofile 10',
-  match => '^holberton.*soft.*nofile',
-}
-
-# Ensure PAM limits are enabled
-file_line { 'pam_limits':
-  path  => '/etc/pam.d/common-session',
-  line  => 'session required pam_limits.so',
-  match => '^session\s+required\s+pam_limits\.so',
-}
-
-file_line { 'pam_limits_noninteractive':
-  path  => '/etc/pam.d/common-session-noninteractive',
-  line  => 'session required pam_limits.so',
-  match => '^session\s+required\s+pam_limits\.so',
+exec { 'set_holberton_nofile_limits':
+  command => 'echo -e "holberton hard nofile 50000\nholberton soft nofile 50000" >> /etc/security/limits.conf',
+  path    => ['/usr/local/bin', '/usr/bin', '/bin'],
+  unless  => 'grep -q "^holberton hard nofile" /etc/security/limits.conf && grep -q "^holberton soft nofile" /etc/security/limits.conf',
 }
