@@ -10,7 +10,7 @@ import sys
 if __name__ == "__main__":
     USER_ID = sys.argv[1]
     url_user = f"https://jsonplaceholder.typicode.com/users/{USER_ID}"
-    
+
     # Fetch user information
     response = requests.get(url_user)
     USERNAME = response.json().get('username')
